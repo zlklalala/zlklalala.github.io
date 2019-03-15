@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Vue,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="Vue基础-day02computed计算属性出现的目的是解决模板中放入过多的逻辑会让模板过重且难以维护的问题；计算属性是基于它们的依赖进行缓存的 123456computed: &amp;#123;  fullName: function () &amp;#123;    console.log(this.firstName + this.lastName)    return this.firstName +">
+<meta name="keywords" content="Vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue基础(2)">
+<meta property="og:url" content="http://yoursite.com/2019/01/31/Vue基础-day02/index.html">
+<meta property="og:site_name" content="zlkBolg">
+<meta property="og:description" content="Vue基础-day02computed计算属性出现的目的是解决模板中放入过多的逻辑会让模板过重且难以维护的问题；计算属性是基于它们的依赖进行缓存的 123456computed: &amp;#123;  fullName: function () &amp;#123;    console.log(this.firstName + this.lastName)    return this.firstName +">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/01/31/Vue基础-day02/img/day02/请求报文.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/31/Vue基础-day02/img/day02/响应报文.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/31/Vue基础-day02/img/day02/jsonp跨域原理解析.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/31/Vue基础-day02/img/day02/transition结合css实现过渡.png">
+<meta property="og:updated_time" content="2019-03-15T09:03:49.780Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vue基础(2)">
+<meta name="twitter:description" content="Vue基础-day02computed计算属性出现的目的是解决模板中放入过多的逻辑会让模板过重且难以维护的问题；计算属性是基于它们的依赖进行缓存的 123456computed: &amp;#123;  fullName: function () &amp;#123;    console.log(this.firstName + this.lastName)    return this.firstName +">
+<meta name="twitter:image" content="http://yoursite.com/2019/01/31/Vue基础-day02/img/day02/请求报文.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/01/31/Vue基础-day02/">
+
+
+
+
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "3709fa2f"
+    });
+  daovoice('update');
+  </script>
+
+
+
+
+
+  <title>vue基础(2) | zlkBolg</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+    <a href="https://your-url" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">zlkBolg</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Stay Hungry, Stay Foolish</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/31/Vue基础-day02/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一只脱离高级趣味的猪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zlkBolg">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">vue基础(2)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-31T02:40:48+08:00">
+                2019-01-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/VUE框架学习/" itemprop="url" rel="index">
+                    <span itemprop="name">VUE框架学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Vue基础-day02"><a href="#Vue基础-day02" class="headerlink" title="Vue基础-day02"></a>Vue基础-day02</h1><h2 id="computed"><a href="#computed" class="headerlink" title="computed"></a>computed</h2><p>计算属性出现的目的是解决模板中放入过多的逻辑会让模板过重且难以维护的问题；计算属性是基于它们的依赖进行缓存的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">computed: &#123;</span><br><span class="line">  fullName: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.firstName + <span class="keyword">this</span>.lastName)</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.firstName + <span class="keyword">this</span>.lastName</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="watch"><a href="#watch" class="headerlink" title="watch"></a>watch</h2><p>侦听器（watch）用来观察和响应 Vue 实例上的数据变动</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">watch: &#123;</span><br><span class="line">  firstName: <span class="function"><span class="keyword">function</span> (<span class="params">val</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.fullName = val + <span class="string">' '</span> + <span class="keyword">this</span>.lastName</span><br><span class="line">  &#125;,</span><br><span class="line">  lastName: <span class="function"><span class="keyword">function</span> (<span class="params">val</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.fullName = <span class="keyword">this</span>.firstName + <span class="string">' '</span> + val</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：通常情况下用computed，当需要在数据变化时<strong>执行异步</strong>或<strong>开销较大</strong>的操作时，用watch</p>
+<h2 id="案例-利用系统指令实现品牌案例管理"><a href="#案例-利用系统指令实现品牌案例管理" class="headerlink" title="案例-利用系统指令实现品牌案例管理"></a>案例-利用系统指令实现品牌案例管理</h2><h3 id="功能-实现品牌列表数据过滤功能"><a href="#功能-实现品牌列表数据过滤功能" class="headerlink" title="功能-实现品牌列表数据过滤功能"></a>功能-实现品牌列表数据过滤功能</h3><p>利用两种方式实现：</p>
+<ol>
+<li>watch 监听器</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> 在data()&#123;&#125;中定义searchvalue变量，作为存储用户是输入搜索值</span><br><span class="line">   <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">        <span class="comment">// vm控制的区块为id为app的div，此div中的所有vue指令均可以被vm解析</span></span><br><span class="line">        el: <span class="string">'#app'</span>,</span><br><span class="line">        data: &#123;</span><br><span class="line">            searchvalue:<span class="string">''</span></span><br><span class="line">             listold:[</span><br><span class="line">                &#123;<span class="attr">id</span>:<span class="number">1</span>,<span class="attr">name</span>:<span class="string">'宝马'</span>,<span class="attr">ctime</span>:<span class="built_in">Date</span>()&#125;,</span><br><span class="line">                &#123;<span class="attr">id</span>:<span class="number">2</span>,<span class="attr">name</span>:<span class="string">'奔驰'</span>,<span class="attr">ctime</span>:<span class="built_in">Date</span>()&#125;</span><br><span class="line">            ],</span><br><span class="line">             list:[</span><br><span class="line">                &#123;<span class="attr">id</span>:<span class="number">1</span>,<span class="attr">name</span>:<span class="string">'宝马'</span>,<span class="attr">ctime</span>:<span class="built_in">Date</span>()&#125;,</span><br><span class="line">                &#123;<span class="attr">id</span>:<span class="number">2</span>,<span class="attr">name</span>:<span class="string">'奔驰'</span>,<span class="attr">ctime</span>:<span class="built_in">Date</span>()&#125;</span><br><span class="line">            ]</span><br><span class="line">          &#125;,</span><br><span class="line">           methods: &#123;</span><br><span class="line">            adddata()&#123;</span><br><span class="line">                <span class="keyword">this</span>.product.ctime = <span class="built_in">Date</span>();</span><br><span class="line">                <span class="keyword">this</span>.list.push(<span class="keyword">this</span>.product);</span><br><span class="line">                <span class="keyword">this</span>.product = &#123;<span class="attr">id</span>:<span class="number">0</span>,<span class="attr">name</span>:<span class="string">''</span>,<span class="attr">ctime</span>:<span class="built_in">Date</span>()&#125;;</span><br><span class="line">                <span class="comment">// 为了防止搜索出来的新数组覆盖list，需要利用listold来存储一个list中完整的值</span></span><br><span class="line">                <span class="keyword">this</span>.listold = <span class="keyword">this</span>.list;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> 双向数据绑定searchvalue</span><br><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"add"</span>&gt;</span><br><span class="line">    品牌名称:<span class="xml"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">v-model</span>=<span class="string">"searchvalue"</span> <span class="attr">placeholder</span>=<span class="string">"请输入搜索条件"</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="number">3.</span> 在watch中监控searchvalue变量的值，当值有改变，则触发方法searchvalue</span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  watch:&#123;</span><br><span class="line">          <span class="comment">// 监控searchvalue变量的值，当值有改变，则触发方法</span></span><br><span class="line">          <span class="comment">// newval:searchvalue变量改变以后的值</span></span><br><span class="line">          <span class="comment">//oldval:searchvalue变量改变之前的值</span></span><br><span class="line">            <span class="string">'searchvalue'</span>:<span class="function"><span class="keyword">function</span>(<span class="params">newval,oldval</span>)</span>&#123;</span><br><span class="line">              <span class="comment">// 为了防止搜索出来的新数组覆盖list，需要利用listold来存储一个list中完整的值</span></span><br><span class="line">                <span class="keyword">this</span>.list=  <span class="keyword">this</span>.listold.filter(<span class="function"><span class="params">item</span>=&gt;</span>item.name.indexOf(newval)!=<span class="number">-1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>computed 计算属性</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> 在data()&#123;&#125;中定义searchvalue变量，作为存储用户是输入搜索值,利用computed定义计算属性来实现按照条件筛选数据逻辑</span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">        <span class="comment">// vm控制的区块为id为app的div，此div中的所有vue指令均可以被vm解析</span></span><br><span class="line">        el: <span class="string">'#app'</span>,</span><br><span class="line">        data: &#123;</span><br><span class="line">            searchvalue:<span class="string">''</span></span><br><span class="line">          &#125;,</span><br><span class="line">        computed:&#123;</span><br><span class="line">          listdata()&#123;</span><br><span class="line">              <span class="keyword">return</span> <span class="keyword">this</span>.list.filter(<span class="function"><span class="params">item</span>=&gt;</span>item.name.indexOf(<span class="keyword">this</span>.searchvalue)!=<span class="number">-1</span>);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> 在v-<span class="keyword">for</span>中遍历计算属性listdata数组中的值</span><br><span class="line"> &lt;tr v-<span class="keyword">for</span>=<span class="string">"item in listdata"</span> :key=<span class="string">"item.id"</span>&gt;</span><br><span class="line"></span><br><span class="line">由计算属性的特点可以知道：当改变了list数组中的值以后，会自动触发计算属性listdata的执行，从而更新v-<span class="keyword">for</span>对于的列表</span><br></pre></td></tr></table></figure>
+<h3 id="功能-利用vue的动画实现删除提示框动画呈现和离开"><a href="#功能-利用vue的动画实现删除提示框动画呈现和离开" class="headerlink" title="功能-利用vue的动画实现删除提示框动画呈现和离开"></a>功能-利用vue的动画实现删除提示框动画呈现和离开</h3><p>  <a href="https://cn.vuejs.org/v2/guide/transitions.html" target="_blank" rel="noopener">transition官方文档</a></p>
+<ol>
+<li><p>transition结合css实现</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">// 1. 用transition组件包裹需要添加过渡的元素，并添加name属性</span><br><span class="line"><span class="tag">&lt;<span class="name">transition</span> <span class="attr">name</span>=<span class="string">"slide"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">v-if</span>=<span class="string">"isshow"</span>&gt;</span>hello 黑马<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">transition</span>&gt;</span></span><br><span class="line"></span><br><span class="line">// 2. 定义以slide开头的css类</span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">  /* 控制整个动画的执行过程 */</span></span><br><span class="line"><span class="undefined">  .slide-enter-active,.slide-leave-active &#123;</span></span><br><span class="line"><span class="undefined">      transition: all 2s;</span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">  /* 设定动画出现的起始位置和动画离开的结束位置 */</span></span><br><span class="line"><span class="undefined">  .slide-enter,.slide-leave-to &#123;</span></span><br><span class="line"><span class="undefined">      padding-left:100px;</span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined"> /* 设定动画离开的起始位置，和动画进入的结束位置 */</span></span><br><span class="line"><span class="undefined">  .slide-enter-to,.slide-leave &#123;</span></span><br><span class="line"><span class="undefined">      padding-left:0px;</span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line">// 3. 在点击事件中控制元素显示与隐藏</span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"toggleShow"</span>&gt;</span>显示/隐藏<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line">// 4. 定义一个isshow变量，用来控制元素显示或隐藏，并在点击事件中改变它的值</span><br><span class="line">// 实例化vue对象（MVVM中的View Model）</span><br><span class="line">new Vue(&#123;</span><br><span class="line">    // vm控制的区块为id为app的div，此div中的所有vue指令均可以被vm解析</span><br><span class="line">    el: '#app',</span><br><span class="line">    data: &#123;</span><br><span class="line">        // 数据 （MVVM中的Model）   </span><br><span class="line">        isshow: false</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">        toggleShow: function () &#123;</span><br><span class="line">            this.isshow = !this.isshow;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>transition结合animate.css实现</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// 1. 导入animate.css</span><br><span class="line"></span><br><span class="line">// 2. 使用</span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"./animate.css"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">transition</span></span></span><br><span class="line"><span class="tag">  <span class="attr">enter-active-class</span>=<span class="string">"animated fadeInRight"</span> </span></span><br><span class="line"><span class="tag">  <span class="attr">leave-active-class</span>=<span class="string">"animated fadeOutRight"</span></span></span><br><span class="line"><span class="tag">  &gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">style</span>=<span class="string">"display:block;width:300px;"</span> <span class="attr">v-if</span>=<span class="string">"isshow"</span>&gt;</span>hello 黑马<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">transition</span>&gt;</span></span><br><span class="line"></span><br><span class="line">// 利用methods中的方法去控制data中的isshow属性，实现元素的显示与隐藏</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>transition结合动画钩子函数实现</p>
+<blockquote>
+<p>注意:enter和leave钩子中，当动画结束一定要调用done()函数，不然后续钩子函数不会被调用</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"showhide"</span>&gt;</span>显示/隐藏<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">&lt;!-- 2.0 在想要进行动画的元素上使用 &lt;transition&gt;标签包住</span></span><br><span class="line"><span class="comment">            transition: </span></span><br><span class="line"><span class="comment">            动画进入事件：</span></span><br><span class="line"><span class="comment">            @before-enter</span></span><br><span class="line"><span class="comment">            @enter</span></span><br><span class="line"><span class="comment">            @after-enter</span></span><br><span class="line"><span class="comment">            --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">transition</span> </span></span><br><span class="line"><span class="tag">            @<span class="attr">before-enter</span>=<span class="string">"beforeEnter"</span> </span></span><br><span class="line"><span class="tag">            @<span class="attr">enter</span>=<span class="string">"enter"</span> </span></span><br><span class="line"><span class="tag">            @<span class="attr">after-enter</span>=<span class="string">"afterEnter"</span></span></span><br><span class="line"><span class="tag">        &gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"show"</span> <span class="attr">v-if</span>=<span class="string">"isshow"</span>&gt;</span>hello 黑马<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">transition</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="comment">// 实例化vue对象（MVVM中的View Model）</span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">        <span class="comment">// vm控制的区块为id为app的div，此div中的所有vue指令均可以被vm解析</span></span></span><br><span class="line"><span class="javascript">        el: <span class="string">'#app'</span>,</span></span><br><span class="line"><span class="undefined">        data: &#123;</span></span><br><span class="line"><span class="javascript">            <span class="comment">// 数据 （MVVM中的Model）   </span></span></span><br><span class="line"><span class="javascript">            isshow: <span class="literal">false</span></span></span><br><span class="line"><span class="undefined">        &#125;,</span></span><br><span class="line"><span class="undefined">        methods: &#123;</span></span><br><span class="line"><span class="javascript">            <span class="comment">// 1.0 动画进入前</span></span></span><br><span class="line"><span class="javascript">            beforeEnter: <span class="function"><span class="keyword">function</span> (<span class="params">el</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'1.0 beforeEnter'</span>);</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">                <span class="comment">// 在这个方法中设定当前动画元素的起始位置</span></span></span><br><span class="line"><span class="javascript">                el.style = <span class="string">"padding-left:100px"</span>;</span></span><br><span class="line"><span class="undefined">            &#125;,</span></span><br><span class="line"><span class="javascript">            <span class="comment">// 2.0 动画执行中</span></span></span><br><span class="line"><span class="javascript">            <span class="comment">// el:动画的元素dom对象</span></span></span><br><span class="line"><span class="javascript">            <span class="comment">// done:enter事件执行完以后的回调，执行了它之后，afterEnter事件才会执行</span></span></span><br><span class="line"><span class="javascript">            enter: <span class="function"><span class="keyword">function</span> (<span class="params">el, done</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'2.0 enter'</span>);</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">                <span class="keyword">var</span> step = <span class="number">3</span>;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">var</span> interval = setInterval(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">                    el.style.paddingLeft = (<span class="number">100</span> - step) + <span class="string">'px'</span>;</span></span><br><span class="line"><span class="undefined">                    step++;</span></span><br><span class="line"><span class="javascript">                    <span class="keyword">if</span> (<span class="built_in">parseInt</span>(el.style.paddingLeft) &lt;= <span class="number">0</span>) &#123;</span></span><br><span class="line"><span class="undefined">                        clearInterval(interval)</span></span><br><span class="line"><span class="javascript">                        <span class="comment">// 动画结束后必须执行done()函数</span></span></span><br><span class="line"><span class="undefined">                        done()</span></span><br><span class="line"><span class="undefined">                    &#125;</span></span><br><span class="line"><span class="undefined">                &#125;, 10)</span></span><br><span class="line"><span class="undefined">            &#125;,</span></span><br><span class="line"><span class="javascript">            <span class="comment">// 3.0 动画执行完毕</span></span></span><br><span class="line"><span class="javascript">            afterEnter: <span class="function"><span class="keyword">function</span> (<span class="params">el</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'3.0 afterEnter'</span>);</span></span><br><span class="line"><span class="javascript">                <span class="comment">// 将isshow重置为false即可</span></span></span><br><span class="line"><span class="javascript">                <span class="keyword">this</span>.isshow = <span class="literal">false</span>;</span></span><br><span class="line"><span class="undefined">            &#125;,</span></span><br><span class="line"><span class="javascript">            showhide: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">this</span>.isshow = !<span class="keyword">this</span>.isshow;</span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    &#125;)</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="axios-基于-promise-的-HTTP-库"><a href="#axios-基于-promise-的-HTTP-库" class="headerlink" title="axios(基于 promise 的 HTTP 库)"></a>axios(基于 promise 的 HTTP 库)</h2><p>  <a href="https://github.com/axios/axios" target="_blank" rel="noopener">axios文档</a></p>
+<ol>
+<li><p>http请求报文</p>
+<p> 浏览器与服务器数据交互是遵循http协议的，当浏览器要访问服务器的时候，浏览器需要将相关请求数据提交给服务器（例如：浏览器信息，url地址，参数等），通常是通过请求报文来提交的</p>
+<ul>
+<li><p>请求报文的格式分为：</p>
+<ol>
+<li>请求报文行</li>
+<li>请求报文头</li>
+<li>请求报文体</li>
+</ol>
+<p><img src="./img/day02/请求报文.png" alt="请求报文"></p>
+</li>
+</ul>
+</li>
+<li><p>http响应报文</p>
+<p> 当浏览器请求服务器的时候，服务器需要将数据返回给浏览器，这种数据是通过响应报文响应回浏览器的</p>
+<ul>
+<li><p>响应报文的格式分为：</p>
+<ol>
+<li>响应报文行</li>
+<li>响应报文头</li>
+<li>响应报文体</li>
+</ol>
+<p><img src="./img/day02/响应报文.png" alt="响应报文"></p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="get请求示例"><a href="#get请求示例" class="headerlink" title="get请求示例"></a>get请求示例</h3>  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">axios.get(<span class="string">'/user?ID=12345'</span>)</span><br><span class="line">  .then(<span class="function"><span class="keyword">function</span> (<span class="params">response</span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(response);</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch(<span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(error);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 或者</span></span><br><span class="line">axios.get(<span class="string">'/user'</span>, &#123;</span><br><span class="line">    params: &#123;</span><br><span class="line">      ID: <span class="number">12345</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  .then(<span class="function"><span class="keyword">function</span> (<span class="params">response</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(response);</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch(<span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(error);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+<p>  演示代码</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">  getData: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> url = <span class="string">'http://157.122.54.189:9093/api/getprodlist'</span></span><br><span class="line">    axios.get(url)</span><br><span class="line">      .then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.list = res.data.message</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.list);</span><br><span class="line">      &#125;)</span><br><span class="line">      .catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(error);</span><br><span class="line">      &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="post请求示例"><a href="#post请求示例" class="headerlink" title="post请求示例"></a>post请求示例</h3>  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">axios.post(<span class="string">'/user'</span>, &#123;</span><br><span class="line">  firstName: <span class="string">'Fred'</span>,</span><br><span class="line">  lastName: <span class="string">'Flintstone'</span></span><br><span class="line">&#125;)</span><br><span class="line">.then(<span class="function"><span class="keyword">function</span> (<span class="params">response</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(response);</span><br><span class="line">&#125;)</span><br><span class="line">.catch(<span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(error);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>  演示代码</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">  getData: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> url = <span class="string">'http://157.122.54.189:9093/api/addproduct'</span></span><br><span class="line">    axios.post(url, <span class="string">"name=hello"</span>)</span><br><span class="line">      .then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(res);</span><br><span class="line">      &#125;)</span><br><span class="line">      .catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(error);</span><br><span class="line">      &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="案例-品牌管理API"><a href="#案例-品牌管理API" class="headerlink" title="案例-品牌管理API"></a>案例-品牌管理API</h2><table>
+<thead>
+<tr>
+<th>接口说明</th>
+<th>URL</th>
+<th>请求方式</th>
+<th>参数</th>
+<th>成功返回</th>
+<th>失败返回</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>获取品牌数据列表</td>
+<td><a href="http://157.122.54.189:9093/api/getprodlist" target="_blank" rel="noopener">http://157.122.54.189:9093/api/getprodlist</a></td>
+<td>GET</td>
+<td>searchvalue（可选）</td>
+<td>{“status”: 0,”message”: [{“id”: 104772,”name”: “LV”,”ctime”: “2017-12-05T08:35:57.000Z”}]}</td>
+<td>未做处理</td>
+</tr>
+<tr>
+<td>添加品牌数据</td>
+<td><a href="http://157.122.54.189:9093/api/addproduct" target="_blank" rel="noopener">http://157.122.54.189:9093/api/addproduct</a></td>
+<td>POST</td>
+<td>name（必填）</td>
+<td>{“status”: 0,”message”: “新增品牌成功”}</td>
+<td>未做处理</td>
+</tr>
+<tr>
+<td>删除品牌数据</td>
+<td><a href="http://157.122.54.189:9093/api/delproduct/:id" target="_blank" rel="noopener">http://157.122.54.189:9093/api/delproduct/:id</a></td>
+<td>GET</td>
+<td>id（必填）</td>
+<td>{“status”: 0, “message”: “删除品牌数据ok”}</td>
+<td>{“status”: 1,”message”: “ER_BAD_FIELD_ERROR: Unknown column ‘xxx’ in ‘where clause’”}</td>
+</tr>
+</tbody>
+</table>
+<h2 id="案例-axios版获取及删除数据"><a href="#案例-axios版获取及删除数据" class="headerlink" title="案例-axios版获取及删除数据"></a>案例-axios版获取及删除数据</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./vue2.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./axios.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">    #app &#123;</span></span><br><span class="line"><span class="undefined">      width: 600px;</span></span><br><span class="line"><span class="undefined">      margin: 10px auto;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">    .tb &#123;</span></span><br><span class="line"><span class="undefined">      border-collapse: collapse;</span></span><br><span class="line"><span class="undefined">      width: 100%;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">    .tb th &#123;</span></span><br><span class="line"><span class="undefined">      background-color: #0094ff;</span></span><br><span class="line"><span class="undefined">      color: white;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">    .tb td,</span></span><br><span class="line"><span class="undefined">    .tb th &#123;</span></span><br><span class="line"><span class="undefined">      padding: 5px;</span></span><br><span class="line"><span class="undefined">      border: 1px solid black;</span></span><br><span class="line"><span class="undefined">      text-align: center;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">    .add &#123;</span></span><br><span class="line"><span class="undefined">      padding: 5px;</span></span><br><span class="line"><span class="undefined">      border: 1px solid black;</span></span><br><span class="line"><span class="undefined">      margin-bottom: 10px;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">  </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"add"</span>&gt;</span></span><br><span class="line">      编号:</span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span>&gt;</span> 品牌名称:</span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"添加"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"add"</span>&gt;</span></span><br><span class="line">      品牌名称:</span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">placeholder</span>=<span class="string">"请输入搜索条件"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">table</span> <span class="attr">class</span>=<span class="string">"tb"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">th</span>&gt;</span>编号<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">th</span>&gt;</span>品牌名称<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">th</span>&gt;</span>创立时间<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">th</span>&gt;</span>操作<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tr</span> <span class="attr">v-for</span>=<span class="string">"(item, index) in list"</span> <span class="attr">:key</span>=<span class="string">"index"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;&#123;item.id&#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;&#123;item.title&#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;&#123;item.ctime&#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">td</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"deleteData(item.id)"</span>&gt;</span>删除<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tr</span> <span class="attr">v-if</span>=<span class="string">"list.length&lt;=0"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">td</span> <span class="attr">colspan</span>=<span class="string">"4"</span>&gt;</span>没有品牌数据<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 动态生成内容tr --&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">    el: <span class="string">"#app"</span>,</span></span><br><span class="line"><span class="undefined">    data: &#123;</span></span><br><span class="line"><span class="undefined">      list: []</span></span><br><span class="line"><span class="undefined">    &#125;,</span></span><br><span class="line"><span class="undefined">    mounted () &#123;</span></span><br><span class="line"><span class="javascript">      <span class="keyword">this</span>.getList()</span></span><br><span class="line"><span class="undefined">    &#125;,</span></span><br><span class="line"><span class="undefined">    methods: &#123;</span></span><br><span class="line"><span class="javascript">      getList: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> url = <span class="string">'http://157.122.54.189:9093/api/getprodlist'</span></span></span><br><span class="line"><span class="undefined">        axios.get(url)</span></span><br><span class="line"><span class="javascript">          .then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">this</span>.list = res.data.message</span></span><br><span class="line"><span class="undefined">          &#125;)</span></span><br><span class="line"><span class="javascript">          .catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(error);</span></span><br><span class="line"><span class="undefined">          &#125;)</span></span><br><span class="line"><span class="undefined">      &#125;,</span></span><br><span class="line"><span class="javascript">      deleteData: <span class="function"><span class="keyword">function</span> (<span class="params">id</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> url = <span class="string">'http://157.122.54.189:9093/api/delproduct/'</span>+id</span></span><br><span class="line"><span class="undefined">        axios.get(url)</span></span><br><span class="line"><span class="javascript">          .then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">this</span>.getList()</span></span><br><span class="line"><span class="undefined">          &#125;)</span></span><br><span class="line"><span class="javascript">          .catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(error);</span></span><br><span class="line"><span class="undefined">          &#125;)</span></span><br><span class="line"><span class="undefined">      &#125;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">  &#125;)</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="vue-resource-不推荐使用"><a href="#vue-resource-不推荐使用" class="headerlink" title="vue-resource(不推荐使用)"></a>vue-resource(不推荐使用)</h2><p>一个使用 XMLHttpRequest 或者 JSONP处理请求的vue插件</p>
+<p><a href="https://github.com/pagekit/vue-resource" target="_blank" rel="noopener">vue-resource文档</a></p>
+<ul>
+<li><p>书写步骤</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> 通过 https:<span class="comment">//cdn.jsdelivr.net/vue.resource/1.2.1/vue-resource.min.js 下载到vue-resource文件</span></span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> 在html页面中通过script标签导入vue-resource.min.js 文件后，就会自动的在Vue对象实例上初始化 $http</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span> 使用</span><br><span class="line"><span class="comment">// 全局Vue构造器写法</span></span><br><span class="line">    Vue.http.get(<span class="string">'/someUrl'</span>, [options]).then(successCallback, errorCallback);</span><br><span class="line">    Vue.http.post(<span class="string">'/someUrl'</span>, [body], [options]).then(successCallback, errorCallback);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在Vue实例中的写法</span></span><br><span class="line">    <span class="keyword">this</span>.$http.get(<span class="string">'/someUrl'</span>, [options]).then(successCallback, errorCallback);</span><br><span class="line">    <span class="keyword">this</span>.$http.post(<span class="string">'/someUrl'</span>, [body], [options]).then(successCallback, errorCallback);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>vue-resource get请求</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">写法格式：</span><br><span class="line"><span class="keyword">this</span>.$http.get(<span class="string">'请求的url'</span>, [可选参数对象，使用&#123;&#125;传参]).then(成功回调函数, 失败回调函数);</span><br><span class="line"></span><br><span class="line">成功回调函数参数对象主要属性说明：</span><br><span class="line"><span class="number">1.</span> url ： 请求的原始url</span><br><span class="line"><span class="number">2.</span> body： 响应报文体中的数据（我们通常用这个属性获取服务器返回的数据）</span><br><span class="line"><span class="number">3.</span> 其他属性请看文档</span><br><span class="line"></span><br><span class="line">举例：</span><br><span class="line"><span class="keyword">this</span>.$http.get(<span class="string">'http://vuecms.ittun.com/api/getlunbo?id=1'</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;<span class="built_in">console</span>.log(res.body)&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">err</span>)</span>&#123;<span class="comment">//err是异常数据&#125;);</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>vue-resource post请求</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">写法格式：</span><br><span class="line"><span class="keyword">this</span>.$http.post(<span class="string">'请求的url'</span>,[可选参数请求报文体对象body,使用&#123;&#125;传参], [可选参数对象，使用&#123;&#125;传参]).then(成功回调函数, 失败回调函数);</span><br><span class="line"></span><br><span class="line">成功回调函数参数对象主要属性说明：</span><br><span class="line"><span class="number">1.</span> url ： 请求的原始url</span><br><span class="line"><span class="number">2.</span> body： 响应报文体中的数据（我们通常用这个属性获取服务器返回的数据）</span><br><span class="line"><span class="number">3.</span> 其他属性请看文档</span><br><span class="line"></span><br><span class="line">注意点：</span><br><span class="line">$http.post()方法中的第二个参数固定写成：&#123;<span class="attr">emulateJSON</span>:<span class="literal">true</span>&#125;,否则可能造成服务器无法接收到请求报文体中的参数值</span><br><span class="line"></span><br><span class="line">举例：</span><br><span class="line"><span class="keyword">this</span>.$http.post(<span class="string">'http://vuecms.ittun.com/api/adddata?id=1'</span>  <span class="comment">//请求的url</span></span><br><span class="line">,&#123;<span class="attr">content</span>:<span class="string">'hello'</span>&#125;  <span class="comment">//请求报文体中传入的参数对象，多个使用逗号分隔</span></span><br><span class="line">,&#123;<span class="attr">emulateJSON</span>:<span class="literal">true</span>&#125;  <span class="comment">//固定写法，保证服务器可以获取到请求报文体参数值</span></span><br><span class="line">).then(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;<span class="built_in">console</span>.log(res.body)&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">err</span>)</span>&#123;<span class="comment">//err是异常数据&#125;);</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>vue-resource jsonp请求</p>
+<p><img src="./img/day02/jsonp跨域原理解析.png" alt="jsonp跨域原理解析"></p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">jsonp请求主要用来解决ajax跨域请求问题，使用jsonp实现跨域首先要保证服务器api支持jsonp请求的格式</span><br><span class="line"></span><br><span class="line">写法格式：</span><br><span class="line"><span class="keyword">this</span>.$http.jsonp(<span class="string">'请求的url'</span>, [可选参数对象，使用&#123;&#125;传参]).then(成功回调函数, 失败回调函数);</span><br><span class="line"></span><br><span class="line">成功回调函数参数对象主要属性说明：</span><br><span class="line"><span class="number">1.</span> url ： 请求的原始url</span><br><span class="line"><span class="number">2.</span> body： 响应报文体中的数据（我们通常用这个属性获取服务器返回的数据）</span><br><span class="line"><span class="number">3.</span> 其他属性请看文档</span><br><span class="line"></span><br><span class="line">举例：</span><br><span class="line"><span class="keyword">this</span>.$http.jsonp(<span class="string">'http://157.122.54.189:9093/jsonp'</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;<span class="built_in">console</span>.log(res.body)&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">err</span>)</span>&#123;<span class="comment">//err是异常数据&#125;);</span></span><br></pre></td></tr></table></figure>
+<h2 id="vue过渡-amp-动画"><a href="#vue过渡-amp-动画" class="headerlink" title="vue过渡&amp;动画"></a>vue过渡&amp;动画</h2><p>  Vue 提供了 transition 的封装组件，在下列情形中，可以给任何元素和组件添加进入或离开的过渡</p>
+<ul>
+<li>条件渲染 (使用 v-if)</li>
+<li>条件展示 (使用 v-show)</li>
+<li>动态组件</li>
+</ul>
+<h3 id="transition的作用"><a href="#transition的作用" class="headerlink" title="transition的作用"></a>transition的作用</h3><p>将需要添加过渡的元素用transition组件包裹起来，结合css或者js钩子函数就能实现该元素进入或者离开的动画效果</p>
+<h3 id="transition结合css实现过渡"><a href="#transition结合css实现过渡" class="headerlink" title="transition结合css实现过渡"></a>transition结合css实现过渡</h3>  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">  <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">    /* 控制整个动画的执行过程 */</span></span><br><span class="line"><span class="undefined">    .slide-enter-active,.slide-leave-active &#123;</span></span><br><span class="line"><span class="undefined">        transition: all 2s;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">    /* 设定动画出现的起始位置和动画离开的结束位置 */</span></span><br><span class="line"><span class="undefined">    .slide-enter,.slide-leave-to &#123;</span></span><br><span class="line"><span class="undefined">        padding-left:100px;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">   /* 设定动画离开的起始位置，和动画进入的结束位置 */</span></span><br><span class="line"><span class="undefined">    .slide-enter-to,.slide-leave &#123;</span></span><br><span class="line"><span class="undefined">        padding-left:0px;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">transition</span> <span class="attr">name</span>=<span class="string">"slide"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">v-if</span>=<span class="string">"isshow"</span>&gt;</span>hello 黑马<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">transition</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>  动画图解<br><br>  <img src="./img/day02/transition结合css实现过渡.png" alt="transition结合css实现过渡"></p>
+<h3 id="transition结合animate-css实现过渡"><a href="#transition结合animate-css实现过渡" class="headerlink" title="transition结合animate.css实现过渡"></a>transition结合animate.css实现过渡</h3>  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 引入animate.css文件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"./animate.css"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 2.0 在想要进行动画的元素上使用 &lt;transition&gt;组件包住</span></span><br><span class="line"><span class="comment">  transition:</span></span><br><span class="line"><span class="comment">    在transition 这个标签中有两个属性：</span></span><br><span class="line"><span class="comment">    1. enter-active-class：控制动画的进入</span></span><br><span class="line"><span class="comment">    2. leave-active-class：控制动画的离开</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    上面两个属性中的值写法注意点：</span></span><br><span class="line"><span class="comment">    1. 两个属性中均要编写 animate.css中定义好的一个类  animated</span></span><br><span class="line"><span class="comment">    2. 在两个属性中分别取animate.css中控制的动画样式即可(按需获取)</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">transition</span> <span class="attr">enter-active-class</span>=<span class="string">"animated fadeInRight"</span> <span class="attr">leave-active-class</span>=<span class="string">"animated fadeOutRight"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">style</span>=<span class="string">"display:block;width:300px;"</span> <span class="attr">v-if</span>=<span class="string">"isshow"</span>&gt;</span>hello 黑马<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">transition</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="transition结合钩子函数实现过渡"><a href="#transition结合钩子函数实现过渡" class="headerlink" title="transition结合钩子函数实现过渡"></a>transition结合钩子函数实现过渡</h3><pre><code>1. 过渡动画进入
+    before-enter      过渡动画进入之前，一般在这个方法中定义目标元素的初始位置
+    enter             过渡动画进入中，在这个方法中定义目标元素的结束位置
+    after-enter       过渡动画结束后，通常在这个方法里面重置初始值
+    enter-cancelled   取消过渡动画时被调用
+
+2. 过渡动画离开
+    before-leave      动画离开之前触发
+    leave             过渡动画进入中触发
+    after-leave       过渡动画离开结束后
+    leave-cancelled   取消过渡动画时被调用
+</code></pre>  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">  <span class="tag">&lt;<span class="name">transition</span> </span></span><br><span class="line"><span class="tag">    @<span class="attr">before-enter</span>=<span class="string">"beforeEnter"</span> </span></span><br><span class="line"><span class="tag">    @<span class="attr">enter</span>=<span class="string">"enter"</span> </span></span><br><span class="line"><span class="tag">    @<span class="attr">after-enter</span>=<span class="string">"afterEnter"</span></span></span><br><span class="line"><span class="tag">&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"show"</span> <span class="attr">v-if</span>=<span class="string">"isshow"</span>&gt;</span>hello 黑马<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">transition</span>&gt;</span></span><br></pre></td></tr></table></figure>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">    <span class="comment">// 1.0 动画进入前</span></span><br><span class="line">    beforeEnter: <span class="function"><span class="keyword">function</span> (<span class="params">el</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'1.0 beforeEnter'</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 在这个方法中设定当前动画元素的起始位置</span></span><br><span class="line">        el.style = <span class="string">"padding-left:100px"</span>;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 2.0 动画执行中</span></span><br><span class="line">    <span class="comment">// el:动画的元素dom对象</span></span><br><span class="line">    <span class="comment">// done:enter事件执行完以后的回调，执行了它之后，afterEnter事件才会执行</span></span><br><span class="line">    enter: <span class="function"><span class="keyword">function</span> (<span class="params">el, done</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'2.0 enter'</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">var</span> step = <span class="number">3</span>;</span><br><span class="line">        <span class="keyword">var</span> interval = setInterval(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">            el.style.paddingLeft = (<span class="number">100</span> - step) + <span class="string">'px'</span>;</span><br><span class="line">            step++;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">parseInt</span>(el.style.paddingLeft) &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">                clearInterval(interval)</span><br><span class="line">                <span class="comment">// 动画结束后必须执行done()函数</span></span><br><span class="line">                done()</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, <span class="number">10</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 3.0 动画执行完毕</span></span><br><span class="line">    afterEnter: <span class="function"><span class="keyword">function</span> (<span class="params">el</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'3.0 afterEnter'</span>);</span><br><span class="line">        <span class="comment">// 将isshow重置为false即可</span></span><br><span class="line">        <span class="keyword">this</span>.isshow = <span class="literal">false</span>;</span><br><span class="line">    &#125;,</span><br><span class="line">    showhide: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.isshow = !<span class="keyword">this</span>.isshow;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Vue/" rel="tag"><i class="fa fa-tag"></i> Vue</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/30/Vue基础-day01/" rel="next" title="vue基础(1)">
+                <i class="fa fa-chevron-left"></i> vue基础(1)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/01/Vue基础-day03/" rel="prev" title="vue基础(3)">
+                vue基础(3) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  <div>
+  
+    <div>
+    
+        <br><div style="text-align:center;color: #1B98E0;font-size:20px;">
+        ----------- 本文结束 -----------
+        </div>
+    
+</div>
+
+
+  
+  </div>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<div class="addthis_inline_share_toolbox">
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5bf4d7c8bf062eea" async="async"></script>
+</div>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MDU4OS8xNzExNg=="></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="一只脱离高级趣味的猪">
+          <p class="site-author-name" itemprop="name">一只脱离高级趣味的猪</p>
+           
+              <p class="site-description motion-element" itemprop="description">zlk的个人博客</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="mailto:yourname@gmail.com || envelope" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                      E-Mail
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://plus.google.com/yourname || google" target="_blank" title="Google">
+                  
+                    <i class="fa fa-fw fa-google"></i>
+                  
+                    
+                      Google
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Vue基础-day02"><span class="nav-number">1.</span> <span class="nav-text">Vue基础-day02</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#computed"><span class="nav-number">1.1.</span> <span class="nav-text">computed</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#watch"><span class="nav-number">1.2.</span> <span class="nav-text">watch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#案例-利用系统指令实现品牌案例管理"><span class="nav-number">1.3.</span> <span class="nav-text">案例-利用系统指令实现品牌案例管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#功能-实现品牌列表数据过滤功能"><span class="nav-number">1.3.1.</span> <span class="nav-text">功能-实现品牌列表数据过滤功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#功能-利用vue的动画实现删除提示框动画呈现和离开"><span class="nav-number">1.3.2.</span> <span class="nav-text">功能-利用vue的动画实现删除提示框动画呈现和离开</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#axios-基于-promise-的-HTTP-库"><span class="nav-number">1.4.</span> <span class="nav-text">axios(基于 promise 的 HTTP 库)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#get请求示例"><span class="nav-number">1.4.1.</span> <span class="nav-text">get请求示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#post请求示例"><span class="nav-number">1.4.2.</span> <span class="nav-text">post请求示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#案例-品牌管理API"><span class="nav-number">1.5.</span> <span class="nav-text">案例-品牌管理API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#案例-axios版获取及删除数据"><span class="nav-number">1.6.</span> <span class="nav-text">案例-axios版获取及删除数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-resource-不推荐使用"><span class="nav-number">1.7.</span> <span class="nav-text">vue-resource(不推荐使用)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue过渡-amp-动画"><span class="nav-number">1.8.</span> <span class="nav-text">vue过渡&amp;动画</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#transition的作用"><span class="nav-number">1.8.1.</span> <span class="nav-text">transition的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#transition结合css实现过渡"><span class="nav-number">1.8.2.</span> <span class="nav-text">transition结合css实现过渡</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#transition结合animate-css实现过渡"><span class="nav-number">1.8.3.</span> <span class="nav-text">transition结合animate.css实现过渡</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#transition结合钩子函数实现过渡"><span class="nav-number">1.8.4.</span> <span class="nav-text">transition结合钩子函数实现过渡</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">一只脱离高级趣味的猪</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
