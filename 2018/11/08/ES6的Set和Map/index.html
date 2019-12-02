@@ -102,18 +102,18 @@
 
 
 
-<meta name="description" content="MapJavascript的Object本身就是键值对的数据结构，但实际上属性和值构成的是”字符串-值“对，属性只能是字符串，如果传个对象字面量作为属性名，那么会默认把对象转换成字符串，结果这个属性名就变成”[object Object]“。 ES6提供了”值-值“对的数据结构，键名不仅可以是字符串，也可以是对象。 特性      Map是一组键值对的结构，具有极快的查找速度。">
+<meta name="description" content="MapJavascript的Object本身就是键值对的数据结构，但实际上属性和值构成的是”字符串-值“对，属性只能是字符串，如果传个对象字面量作为属性名，那么会默认把对象转换成字符串，结果这个属性名就变成”[object Object]“。 ES6提供了”值-值“对的数据结构，键名不仅可以是字符串，也可以是对象。 特性Map是一组键值对的结构，具有极快的查找速度。">
 <meta name="keywords" content="ES6">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ES6的Set和Map">
 <meta property="og:url" content="http://yoursite.com/2018/11/08/ES6的Set和Map/index.html">
 <meta property="og:site_name" content="zlkBolg">
-<meta property="og:description" content="MapJavascript的Object本身就是键值对的数据结构，但实际上属性和值构成的是”字符串-值“对，属性只能是字符串，如果传个对象字面量作为属性名，那么会默认把对象转换成字符串，结果这个属性名就变成”[object Object]“。 ES6提供了”值-值“对的数据结构，键名不仅可以是字符串，也可以是对象。 特性      Map是一组键值对的结构，具有极快的查找速度。">
+<meta property="og:description" content="MapJavascript的Object本身就是键值对的数据结构，但实际上属性和值构成的是”字符串-值“对，属性只能是字符串，如果传个对象字面量作为属性名，那么会默认把对象转换成字符串，结果这个属性名就变成”[object Object]“。 ES6提供了”值-值“对的数据结构，键名不仅可以是字符串，也可以是对象。 特性Map是一组键值对的结构，具有极快的查找速度。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-15T16:14:01.836Z">
+<meta property="og:updated_time" content="2019-03-15T16:17:44.948Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ES6的Set和Map">
-<meta name="twitter:description" content="MapJavascript的Object本身就是键值对的数据结构，但实际上属性和值构成的是”字符串-值“对，属性只能是字符串，如果传个对象字面量作为属性名，那么会默认把对象转换成字符串，结果这个属性名就变成”[object Object]“。 ES6提供了”值-值“对的数据结构，键名不仅可以是字符串，也可以是对象。 特性      Map是一组键值对的结构，具有极快的查找速度。">
+<meta name="twitter:description" content="MapJavascript的Object本身就是键值对的数据结构，但实际上属性和值构成的是”字符串-值“对，属性只能是字符串，如果传个对象字面量作为属性名，那么会默认把对象转换成字符串，结果这个属性名就变成”[object Object]“。 ES6提供了”值-值“对的数据结构，键名不仅可以是字符串，也可以是对象。 特性Map是一组键值对的结构，具有极快的查找速度。">
 
 
 
@@ -435,9 +435,7 @@
       
         <h3 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h3><p>Javascript的Object本身就是键值对的数据结构，但实际上属性和值构成的是”字符串-值“对，属性只能是字符串，如果传个对象字面量作为属性名，那么会默认把对象转换成字符串，结果这个属性名就变成”[object Object]“。</p>
 <p>ES6提供了”值-值“对的数据结构，键名不仅可以是字符串，也可以是对象。</p>
-<h4 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h4>
-    <div id="aplayer-vRcvexRD" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="2240444242" data-server="netease" data-type="playlist" data-mode="circulation" data-autoplay="false" data-mutex="false" data-listmaxheight="340px" data-preload="none" data-theme="#ad7a86" data-listfolded="true"></div>
-<p>Map是一组键值对的结构，具有极快的查找速度。</p>
+<h4 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h4><p>Map是一组键值对的结构，具有极快的查找速度。</p>
 <a id="more"></a>
 <p>举个例子，假设要根据同学的名字查找对应的成绩，如果用Array实现，需要两个Array：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> names = [<span class="string">'Michael'</span>, <span class="string">'Bob'</span>, <span class="string">'Tracy'</span>];</span><br><span class="line"><span class="keyword">var</span> scores = [<span class="number">95</span>, <span class="number">75</span>, <span class="number">85</span>];</span><br></pre></td></tr></table></figure>
@@ -716,7 +714,7 @@ s; // Set {1, 2, 3, &quot;3&quot;}
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -727,7 +725,7 @@ s; // Set {1, 2, 3, &quot;3&quot;}
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -738,7 +736,7 @@ s; // Set {1, 2, 3, &quot;3&quot;}
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -776,7 +774,7 @@ s; // Set {1, 2, 3, &quot;3&quot;}
           
         </div>
         
-        <div id="aplayer-ytdQIMwg" class="aplayer aplayer-tag-marker meting-tag-marker aplayer-withlrc aplayer-withlist" data-id="2240444242" data-server="netease" data-type="playlist" data-mode="circulation" data-autoplay="false" data-mutex="false" data-listmaxheight="340px" data-preload="none" data-theme="#ad7a86">
+        <div id="aplayer-vRcvexRD" class="aplayer aplayer-tag-marker meting-tag-marker aplayer-withlrc aplayer-withlist" data-id="2240444242" data-server="netease" data-type="playlist" data-mode="circulation" data-autoplay="false" data-mutex="false" data-listmaxheight="340px" data-preload="none" data-theme="#ad7a86" data-listfolded="true">
     <div class="aplayer-body">
       <div class="aplayer-pic" style="background-image: url(&quot;https://api.i-meto.com/api/v1/meting?server=netease&amp;type=pic&amp;id=2323268069553116&amp;auth=44d9efd33ef115acd9b7119c04a0e57426a9e0f4d74935f817d9a53553621dde&quot;);background-color: #ad7a86;">
         <div class="aplayer-button aplayer-play"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewbox="0 0 16 31">
